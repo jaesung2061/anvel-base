@@ -1,0 +1,13 @@
+body {
+  background-color: #eee; }
+
+.wrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%; }
+  .wrapper .message {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%); }

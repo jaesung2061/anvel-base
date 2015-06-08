@@ -1,0 +1,20 @@
+{
+  "name": "anvel-base",
+  "version": "0.1.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.9.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.13.0",
+    "angular-sanitize": "~1.4.0",
+    "restangular": "~1.5.1"
+  },
+  "devDependencies": {}
+}
