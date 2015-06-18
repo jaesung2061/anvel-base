@@ -1,5 +1,2 @@
-## Installation
+## Preconfigured starter kit
 
-test
-
-## test
