@@ -4,6 +4,7 @@
 	"keywords": ["framework", "laravel", "angular"],
 	"license": "MIT",
 	"type": "project",
+	"minimum-stability": "dev",
 	"require": {
 		"laravel/framework": "5.0.*"
 	},
