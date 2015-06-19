@@ -32,3 +32,5 @@ gulp css
 ```
 
 #### More Documentation and tutorials on building websites at [test](https://anvel.io)
+
+Tutorials coming soon: blogs, social networks and whatever you request :)
