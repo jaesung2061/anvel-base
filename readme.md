@@ -49,7 +49,9 @@ gulp js
 gulp css
 ```
 
-#### Your working directories
+<hr/>
+
+### Your working directories
 
 Your AngularJs files will be located in `./resources/assets/js`
 
@@ -57,7 +59,9 @@ Your scss files are located in `./resources/assets/sass`
 
 Your views are located in `./public/views`
 
-##### Thats it, complete guide on building websites at [Anvel.io](http://anvel.io)
+<hr/>
+
+#### Thats it, complete guide on building websites at [Anvel.io](http://anvel.io)
 
 Tutorials coming soon: blogs, social networks and whatever you request :)
 
