@@ -31,6 +31,8 @@ gulp js
 gulp css
 ```
 
-#### More Documentation and tutorials on building websites at [test](https://anvel.io)
+#### More Documentation and tutorials on building websites at [Anvel.io](https://anvel.io)
 
 Tutorials coming soon: blogs, social networks and whatever you request :)
+
+Email: jeffyeon2061@gmail.com
