@@ -1,7 +1,34 @@
-## Preconfigured starter kit
+## Angular Laravel starter kit (Anvel)
 
-Step 1:
-composer install
-npm install
+Designed to make starting new projects even easier.
+
+### Installation
+
+```
+composer create-project anvel/anvel-base
+```
+
+Alternatively you can run
+
+```
+git clone https://github.com/jaesung2061/anvel-base.git
+```
+
+#### Post install
+
+Run the following commands to pull in dependencies and install them.
+
+```
+npm install [--no-bin-links]
 bower install
-php artisan jwt:generate
+```
+
+Set up asset files
+
+```
+gulp dep
+gulp js
+gulp css
+```
+
+#### More Documentation and tutorials on building websites at [test](https://anvel.io)
