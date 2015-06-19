@@ -149,6 +149,7 @@ return [
 		 * App-specific Service Providers
 		 */
 		'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
 	],
 
