@@ -61,8 +61,8 @@ Your views are located in `./public/views`
 
 <hr/>
 
-#### Thats it, complete guide on building websites at [Anvel.io](http://anvel.io)
+### Thats it, complete guide on building websites at [Anvel.io](http://anvel.io)
 
-Tutorials coming soon: blogs, social networks and whatever you request :)
+Video tutorials coming soon: blogs, social networks and more
 
 Email: jeffyeon2061@gmail.com
