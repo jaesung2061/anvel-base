@@ -39,8 +39,8 @@
 		],
 		"post-create-project-cmd": [
 			"php -r \"copy('.env.example', '.env');\"",
-			"php artisan jwt:generate",
-			"php artisan key:generate"
+			"php artisan key:generate",
+			"php artisan jwt:generate"
 		]
 	},
 	"config": {
