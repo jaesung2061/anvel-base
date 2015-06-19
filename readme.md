@@ -29,6 +29,8 @@ php artisan key:generate
 php artisan jwt:generate
 ```
 
+<hr/>
+
 ### Post install
 
 Run these commands to pull in node modules and bower components:
