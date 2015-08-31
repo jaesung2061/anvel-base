@@ -7,6 +7,7 @@ Designed to make starting new projects even easier.
 1. <a href="//getcomposer.org">Composer</a>
 2. <a href="//nodejs.org">NodeJs</a>
 3. <a href="//www.npmjs.com/package/bower">Bower</a>
+4. <a href="//www.npmjs.com/package/bower">Gulp</a>
 
 ### Installation through Composer (recommended)
 
@@ -64,5 +65,3 @@ Your views are located in `./public/views`
 ### Thats it, complete guide on building websites at [Anvel.io](http://anvel.io)
 
 Video tutorials coming soon: blogs, social networks and more.
-
-Email: jeffyeon2061@gmail.com
