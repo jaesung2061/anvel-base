@@ -10,7 +10,8 @@
  |
  */
 
-var gulp = require('gulp'),
+var config = require('./gulpconfig.json'),
+    gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	autoprefixer = require('gulp-autoprefixer'),
 	concat = require('gulp-concat'),
