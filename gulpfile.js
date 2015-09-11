@@ -96,26 +96,14 @@ gulp.task('js', function () {
  *
  */
 gulp.task('dep', function () {
-	var jsFiles = [
-			'bower_components/lodash/lodash.js',
-			'bower_components/restangular/dist/restangular.js',
-			'bower_components/angular-sanitize/angular-sanitize.js',
-			'bower_components/angular-bootstrap/ui-bootstrap.js',
-			'bower_components/angular-ui-router/release/angular-ui-router.js',
-			'resources/assets/js/helpers.js'
-		],
-		cssFiles = [
-			'bower_components/bootstrap/dist/css/bootstrap.css'
-		];
-
 	// Compile JS dependencies into one file
-	gulp.src(jsFiles)
+	gulp.src(config.js)
 		.pipe(concat('dependencies.js'))
 		//.pipe(uglify())
 		.pipe(gulp.dest(assetsPath));
 
 	// Compile CSS dependencies into one file
-	gulp.src(cssFiles)
+	gulp.src(config.css)
 		.pipe(concat('dependencies.css'))
 		//.pipe(minifyCSS({keepSpecialComments: 0}))
 		.pipe(gulp.dest(assetsPath))
