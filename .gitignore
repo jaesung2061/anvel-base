@@ -1,7 +1,5 @@
 /vendor
 /node_modules
 /bower_components
-/public/assets/*
 /.idea
 .env
-_ide_helper.php

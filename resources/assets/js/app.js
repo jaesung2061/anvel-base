@@ -1,65 +1,89 @@
 (function (module, undefined) {
-	module
-		/*
-		 |--------------------------------------------------------------------------
-		 | Angular Config
-		 |--------------------------------------------------------------------------
-		 |
-		 | Here you will set configuration variables for your Angular
-		 | application. You will also need to set your routes here.
-		 |
-		 */
-		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
-			function ($stateProvider, $urlRouterProvider, $locationProvider) {
-				// Because we want pretty urls, not hash bangs
-				$locationProvider.html5Mode(true);
+    module
+        .config(['$stateProvider', '$locationProvider', 'RestangularProvider',
+            function ($stateProvider, $locationProvider, RestangularProvider) {
+                // Because we want pretty urls, not hash bangs
+                $locationProvider.html5Mode(true);
 
-				// Set your routes/states here
-				$stateProvider
-					.state('welcome', {
-						url: '/',
-						templateUrl: 'views/pages/welcome.html'
-					});
-			}])
+                // Set default request base url
+                RestangularProvider.setBaseUrl('/api');
 
-		/*
-		|--------------------------------------------------------------------------
-		| Application Controller
-		|--------------------------------------------------------------------------
-		|
-		| This is where your application global variables and
-		| methods will be handled. Anything that requires
-		| global scope will be handled in this method.
-		|
-		*/
-		.controller('AppController', [
-			function () {
-				var vm = this;
-				vm.anvelUrl = '//anvel.io';
-				vm.repositoryUrl = '//github.com'
-			}]);
+                // Set your routes/states here
+                $stateProvider
+                    .state('home', {
+                        url: '/',
+                        templateUrl: 'views/pages/home.html'
+                    });
+            }])
+        .controller('AppController', [
+            'Restangular', '$rootScope', '$scope', 'Session',
+            function (Restangular, $rootScope, $scope, Session) {
+                var vm = this,
+                    Documents = Restangular.all('documents'),
+                    Auth = Restangular.all('auth'),
+                    token;
+
+                vm.rootUrl = 'http://anvel.app:8000';
+
+                token = readCookie('token');
+                Auth.customGET(null, {token: token}).then(function (data) {
+                    $rootScope.$broadcast('login-success', data);
+                }, function () {
+                    $rootScope.$broadcast('login-failure');
+                });
+
+                $scope.$on('$stateChangeSuccess', function () {
+                    vm.page = 1;
+                    Documents.getList({type: 'blog-post', page: vm.page}).then(function (response) {
+                        vm.blogPosts = response;
+                    });
+                });
+                $scope.$on('login-success', function (event, data) {
+                    vm.currentUser = data.user;
+                    Session.setToken(data.token);
+                    Restangular.setDefaultHeaders({
+                        Authorization: 'Bearer ' + data.token
+                    });
+                    createCookie('token', data.token);
+                });
+                $scope.$on('login-failure', function (event) {
+                    vm.currentUser = null;
+                    Session.unsetToken();
+                    Restangular.setDefaultHeaders(null);
+                    eraseCookie('token');
+                });
+
+                vm.getNextPage = function () {
+                    Documents.getList({type: 'blog-post', page: ++vm.page}).then(function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            vm.blogPosts.push(response[i]);
+                        }
+                    });
+                }
+            }])
 })(angular.module('MyApp', [
-	/*
-	|--------------------------------------------------------------------------
-	| AngularJs Dependencies
-	|--------------------------------------------------------------------------
-	|
-	| Here is where you include all the AngularJs dependencies required
-	| for your application. Included are the bottom line essentials.
-	|
-	*/
-	'ngSanitize',
-	'restangular',
-	'ui.router',
+    /*
+     |--------------------------------------------------------------------------
+     | AngularJs Dependencies
+     |--------------------------------------------------------------------------
+     |
+     | Here is where you include all the AngularJs dependencies required
+     | for your application. Included are the bottom line essentials.
+     |
+     */
+    'ngSanitize',
+    'restangular',
+    'ui.router',
+    'ui.bootstrap',
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Modules
-	|--------------------------------------------------------------------------
-	|
-	| Here you may include your application specific modules here.
-	|
-	*/
-
+    /*
+     |--------------------------------------------------------------------------
+     | Application Modules
+     |--------------------------------------------------------------------------
+     |
+     | Here you may include your application specific modules here.
+     |
+     */
+    'MyApp.authModule'
 
 ]));

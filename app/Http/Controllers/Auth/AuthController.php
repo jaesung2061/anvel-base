@@ -1,33 +1,60 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\User;
+use Illuminate\Http\Request;
+use Input;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller {
+    /**
+     * Login user with JWT Token
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index()
+    {
+        $user = JWTAuth::parseToken()->authenticate();
 
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
+        $token = JWTAuth::getToken()->get()->get();
 
-	use AuthenticatesAndRegistersUsers;
+        return response()->json(compact('token', 'user'));
+    }
 
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest', ['except' => 'getLogout']);
-	}
+    /**
+     * Login user with credentials
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        $user = JWTAuth::toUser($token);
+
+        return response()->json(compact('token', 'user'));
+    }
+
+    /**
+     * Log out user. Blacklist the token.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy()
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        return Response::make('Good', 200);
+    }
 }

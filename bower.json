@@ -10,10 +10,10 @@
     "tests"
   ],
   "dependencies": {
-    "lodash": "~3.9.3",
-    "angular-ui-router": "~0.2.15",
     "angular-bootstrap": "~0.13.0",
     "angular-sanitize": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "lodash": "~3.10.1",
     "restangular": "~1.5.1"
   },
   "devDependencies": {}
