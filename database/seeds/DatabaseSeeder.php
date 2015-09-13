@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder {
      * @var array
      */
     protected $seeders = [
-//        'users' => UsersTableSeeder::class
+        'users' => UsersTableSeeder::class
     ];
 
     public function run()
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder {
         Model::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-        // loop through the seeders and call each one
+        // Loop through and run each seeder
         foreach ($this->seeders as $table => $seeder) {
             DB::table($table)->truncate();
             $this->call($seeder);
