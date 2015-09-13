@@ -10,14 +10,13 @@
  |
  */
 
-var config = require('./gulpconfig.js'),
-    gulp = require('gulp'),
+var gulp = require('gulp'),
     sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     minifyCSS = require('gulp-minify-css'),
-    assetsPath = 'public/assets';
+    autoprefixer = require('gulp-autoprefixer'),
+    config = require('./gulpconfig.js');
 
 /**
  * Command: 'gulp'
@@ -61,8 +60,6 @@ gulp.task('watch', function () {
  * This task will run grab the main .scss file and run the
  * file through the sass compiler and takes care of any
  * browser incompatibilities using gulp autoprefixer.
- * You may choose to minify these CSS files if you
- * like. Simply uncomment the minifyCSS() line.
  *
  */
 gulp.task('css', function () {
@@ -70,7 +67,7 @@ gulp.task('css', function () {
         .pipe(sass())
         .pipe(autoprefixer('last 5 versions'))
         //.pipe(minifyCSS())
-        .pipe(gulp.dest(assetsPath));
+        .pipe(gulp.dest(config.assetsPath));
 });
 
 /**
@@ -85,7 +82,7 @@ gulp.task('js', function () {
     gulp.src('resources/assets/js/**/*.js')
         .pipe(concat('main.js'))
         //.pipe(uglify())
-        .pipe(gulp.dest(assetsPath))
+        .pipe(gulp.dest(config.assetsPath))
 });
 
 /**
@@ -93,21 +90,20 @@ gulp.task('js', function () {
  *
  * Whenever you pull in a new dependency, you will need
  * to include/bundle the files into your source. The
- * files are not yet minified to debug with ease.
- * To minify and uglify the files, remove the
- * comment markers in the commented lines.
+ * new dependencies must be included in the gulp
+ * config file (gulpconfig.js).
  *
  */
 gulp.task('vendor', function () {
     // Compile JS dependencies into one file
     gulp.src(config.js)
-        .pipe(concat('dependencies.js'))
+        .pipe(concat('vendor.js'))
         //.pipe(uglify())
-        .pipe(gulp.dest(assetsPath));
+        .pipe(gulp.dest(config.assetsPath));
 
     // Compile CSS dependencies into one file
     gulp.src(config.css)
-        .pipe(concat('dependencies.css'))
+        .pipe(concat('vendor.css'))
         //.pipe(minifyCSS({keepSpecialComments: 0}))
-        .pipe(gulp.dest(assetsPath))
+        .pipe(gulp.dest(config.assetsPath))
 });
