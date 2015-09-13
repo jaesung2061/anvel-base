@@ -1,27 +1,60 @@
-## Laravel PHP Framework
+## Angular Laravel starter kit (Anvel)
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Designed to make starting new projects even easier.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+### Prerequisites
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+1. <a href="//getcomposer.org">Composer</a>
+2. <a href="//nodejs.org">NodeJs</a>
+3. <a href="//www.npmjs.com/package/bower">Bower</a>
+4. <a href="//www.npmjs.com/package/bower">Gulp</a>
 
-## Official Documentation
+### Installation through Composer (recommended)
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Run this command:
 
-## Contributing
+```
+composer create-project anvel/anvel-base your-project
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+<hr>
 
-## Security Vulnerabilities
+### Alternative installation:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Run these commands:
 
-### License
+```
+git clone https://github.com/jaesung2061/anvel-base.git your-project
+composer install
+php artisan key:generate
+php artisan jwt:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+<hr>
+
+### Post install
+
+Run these commands to pull in node modules and bower components:
+
+```
+npm install [--no-bin-links]
+npm install -g bower
+bower install
+```
+
+<br>
+Run this command to set up your public asset files (js, css files)
+
+```
+gulp setup
+```
+
+<hr>
+
+### Your working directories
+
+Your AngularJs files will be located in `./resources/assets/js`
+
+Your scss files are located in `./resources/assets/sass`
+
+Your views are located in `./public/views`
