@@ -12,17 +12,6 @@
 */
 
 Route::group(['prefix' => 'api'], function () {
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Routes
-    |--------------------------------------------------------------------------
-    |
-    | Here is where you can register all of the routes for an application.
-    | It's a breeze. Simply tell Laravel the URIs it should respond to
-    | and give it the controller to call when that URI is requested.
-    |
-    */
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/', 'Auth\AuthController@login');
         Route::get('/', 'Auth\AuthController@index');
@@ -30,7 +19,6 @@ Route::group(['prefix' => 'api'], function () {
     });
 
     Route::resource('users', 'UsersController');
-    Route::resource('documents', 'DocumentsController');
 });
 
 /*
@@ -38,14 +26,12 @@ Route::group(['prefix' => 'api'], function () {
 | Wild-Card Route
 |--------------------------------------------------------------------------
 |
-| When the user enters any uri that is not prepended with '/api/'
-| Return the default view and AngularJs will route accordingly
-| on the browser client-side application.
+| This is the only route that sends a view. When the
+| browser sends a URI that is not prepended with
+| "api/" this route will return the main view.
 |
 */
 Route::any('{slug}', function ()
 {
-    $appName = 'MyApp';
-
-    return View::make('default', compact('appName'));
+    return View::make('default');
 })->where('slug', '(.*)?');
