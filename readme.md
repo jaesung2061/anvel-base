@@ -49,9 +49,7 @@ Run this command to set up your public asset files (js, css files)
 gulp setup
 ```
 
-<hr>
-
-Run `php artisan serve` and you're ready to go http://localhost:8000
+### Run `php artisan serve` and you're ready to go http://localhost:8000
 
 <hr>
 ### Your working directories
