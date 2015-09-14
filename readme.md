@@ -51,6 +51,9 @@ gulp setup
 
 <hr>
 
+Run `php artisan serve` and you're ready to go http://localhost:8000
+
+<hr>
 ### Your working directories
 
 Your AngularJs files will be located in `./resources/assets/js`
