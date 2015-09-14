@@ -34,24 +34,18 @@ php artisan jwt:generate
 
 ### Post install
 
-Run these commands to pull in node modules and bower components:
-
 ```
 npm install [--no-bin-links]
 npm install -g bower
 bower install
-```
-
-<br>
-Run this command to set up your public asset files (js, css files)
-
-```
 gulp setup
+php artisan serve
 ```
 
-### Run `php artisan serve` and you're ready to go http://localhost:8000
+Before working on your JS/SCSS files, you must run command `gulp`. This command will watch the JS/CSS files in `./resources/assets/*`. If you are running `php artisan serve` already, open a new terminal to run `gulp`.
 
 <hr>
+
 ### Your working directories
 
 Your AngularJs files will be located in `./resources/assets/js`
@@ -59,3 +53,5 @@ Your AngularJs files will be located in `./resources/assets/js`
 Your scss files are located in `./resources/assets/sass`
 
 Your views are located in `./public/views`
+
+### Tutorials and better documentation coming soon!
