@@ -20,7 +20,7 @@
             function (Restangular) {
                 var vm = this;
             }])
-})(angular.module('MyApp', [
+})(angular.module('App', [
     /*
      |--------------------------------------------------------------------------
      | AngularJs Dependencies
