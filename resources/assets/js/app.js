@@ -16,50 +16,9 @@
                     });
             }])
         .controller('AppController', [
-            'Restangular', '$rootScope', '$scope', 'Session',
-            function (Restangular, $rootScope, $scope, Session) {
-                var vm = this,
-                    Documents = Restangular.all('documents'),
-                    Auth = Restangular.all('auth'),
-                    token;
-
-                vm.rootUrl = 'http://anvel.app:8000';
-
-                token = readCookie('token');
-                Auth.customGET(null, {token: token}).then(function (data) {
-                    $rootScope.$broadcast('login-success', data);
-                }, function () {
-                    $rootScope.$broadcast('login-failure');
-                });
-
-                $scope.$on('$stateChangeSuccess', function () {
-                    vm.page = 1;
-                    Documents.getList({type: 'blog-post', page: vm.page}).then(function (response) {
-                        vm.blogPosts = response;
-                    });
-                });
-                $scope.$on('login-success', function (event, data) {
-                    vm.currentUser = data.user;
-                    Session.setToken(data.token);
-                    Restangular.setDefaultHeaders({
-                        Authorization: 'Bearer ' + data.token
-                    });
-                    createCookie('token', data.token);
-                });
-                $scope.$on('login-failure', function (event) {
-                    vm.currentUser = null;
-                    Session.unsetToken();
-                    Restangular.setDefaultHeaders(null);
-                    eraseCookie('token');
-                });
-
-                vm.getNextPage = function () {
-                    Documents.getList({type: 'blog-post', page: ++vm.page}).then(function (response) {
-                        for (var i = 0; i < response.length; i++) {
-                            vm.blogPosts.push(response[i]);
-                        }
-                    });
-                }
+            'Restangular',
+            function (Restangular) {
+                var vm = this;
             }])
 })(angular.module('MyApp', [
     /*
@@ -84,6 +43,6 @@
      | Here you may include your application specific modules here.
      |
      */
-    'MyApp.authModule'
+    'App.authModule'
 
 ]));
