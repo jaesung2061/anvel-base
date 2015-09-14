@@ -54,4 +54,4 @@
 
             return Session;
         }])
-})(angular.module('MyApp.authModule', []));
+})(angular.module('App.authModule', []));
