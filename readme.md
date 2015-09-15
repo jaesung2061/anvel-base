@@ -25,6 +25,7 @@ Run these commands:
 
 ```
 git clone https://github.com/jaesung2061/anvel-base.git your-project
+cd your-project
 composer install
 php artisan key:generate
 php artisan jwt:generate
@@ -35,8 +36,8 @@ php artisan jwt:generate
 ### Post install
 
 ```
-npm install [--no-bin-links]
-npm install -g bower
+cd your-project
+npm install --no-bin-links
 bower install
 gulp setup
 php artisan serve
