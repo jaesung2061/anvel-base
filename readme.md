@@ -43,4 +43,4 @@ Your scss files are located in `./resources/assets/sass`
 
 Your views are located in `./public/views`
 
-### Tutorials and better documentation coming soon!
+### [Tutorials and Documentation at Anvel.io](//anvel.io)
