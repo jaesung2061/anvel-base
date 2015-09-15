@@ -29,7 +29,9 @@ gulp setup
 php artisan serve
 ```
 
-Before working on your JS/SCSS files, you must run command `gulp`. This command will watch the JS/CSS files in `./resources/assets/*`. If you are running `php artisan serve` already, open a new terminal to run `gulp`.
+Installation is now done. Go to http://localhost:8000.
+
+Before working on your JS/SCSS files, you must run command `gulp`. This command will watch the JS/CSS files in `./resources/assets/*`. When it detects change in the files, it will grab the files, compile and concatenate them into `public/assets`. If you are running `php artisan serve` already, open a new terminal to run `gulp`.
 
 <hr>
 
