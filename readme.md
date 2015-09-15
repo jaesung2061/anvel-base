@@ -19,20 +19,6 @@ composer create-project anvel/anvel-base your-project
 
 <hr>
 
-### Alternative installation:
-
-Run these commands:
-
-```
-git clone https://github.com/jaesung2061/anvel-base.git your-project
-cd your-project
-composer install
-php artisan key:generate
-php artisan jwt:generate
-```
-
-<hr>
-
 ### Post install
 
 ```
