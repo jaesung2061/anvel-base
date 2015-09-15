@@ -48,10 +48,7 @@ gulp.task('setup', ['vendor', 'css', 'js']);
  *
  */
 gulp.task('watch', function () {
-    var files = ['resources/assets/sass/**/*.scss', 'resources/assets/js/**/*.js'],
-        tasks = ['css', 'js'];
-
-    gulp.watch(files, tasks);
+    gulp.watch(config.watch.files, config.watch.tasks);
 });
 
 /**
@@ -96,14 +93,16 @@ gulp.task('js', function () {
  */
 gulp.task('vendor', function () {
     // Compile JS dependencies into one file
-    gulp.src(config.js)
+    gulp.src(config.dependencies.js)
         .pipe(concat('vendor.js'))
         //.pipe(uglify())
         .pipe(gulp.dest(config.assetsPath));
 
     // Compile CSS dependencies into one file
-    gulp.src(config.css)
+    gulp.src(config.dependencies.css)
         .pipe(concat('vendor.css'))
         //.pipe(minifyCSS({keepSpecialComments: 0}))
         .pipe(gulp.dest(config.assetsPath))
 });
+
+// Feel free to make custom Gulp methods!
