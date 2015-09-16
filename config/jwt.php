@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'ttl' => 60,
+    'ttl' => env('JWT_TTL', 60),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'refresh_ttl' => 20160,
+    'refresh_ttl' => env('JWT_REFRESH_TTL', 20160),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,31 +52,7 @@ return [
     |
     */
 
-    'algo' => 'HS256',
-
-    /*
-    |--------------------------------------------------------------------------
-    | User Model namespace
-    |--------------------------------------------------------------------------
-    |
-    | Specify the full namespace to your User model.
-    | e.g. 'Acme\Entities\User'
-    |
-    */
-
-    'user' => 'App\User',
-
-    /*
-    |--------------------------------------------------------------------------
-    | User identifier
-    |--------------------------------------------------------------------------
-    |
-    | Specify a unique property of the user that will be added as the 'sub'
-    | claim of the token payload.
-    |
-    */
-
-    'identifier' => 'id',
+    'algo' => env('JWT_ALGO', 'HS256'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,6 +80,21 @@ return [
     'blacklist_enabled' => env('JWT_BLACKLIST_ENABLED', true),
 
     /*
+    | -------------------------------------------------------------------------
+    | Blacklist Grace Period
+    | -------------------------------------------------------------------------
+    |
+    | When multiple concurrent requests are made with the same JWT,
+    | it is possible that some of them fail, due to token regeneration
+    | on every request.
+    |
+    | Set grace period in seconds to prevent parallel request failure.
+    |
+    */
+
+    'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 0),
+
+    /*
     |--------------------------------------------------------------------------
     | Providers
     |--------------------------------------------------------------------------
@@ -116,18 +107,6 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | User Provider
-        |--------------------------------------------------------------------------
-        |
-        | Specify the provider that is used to find the user based
-        | on the subject claim
-        |
-        */
-
-        'user' => 'Tymon\JWTAuth\Providers\User\EloquentUserAdapter',
-
-        /*
-        |--------------------------------------------------------------------------
         | JWT Provider
         |--------------------------------------------------------------------------
         |
@@ -135,7 +114,7 @@ return [
         |
         */
 
-        'jwt' => 'Tymon\JWTAuth\Providers\JWT\NamshiAdapter',
+        'jwt' => Tymon\JWTAuth\Providers\JWT\Namshi::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -146,9 +125,7 @@ return [
         |
         */
 
-        'auth' => function ($app) {
-            return new Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter($app['auth']);
-        },
+        'auth' => Tymon\JWTAuth\Providers\Auth\Illuminate::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -159,9 +136,7 @@ return [
         |
         */
 
-        'storage' => function ($app) {
-            return new Tymon\JWTAuth\Providers\Storage\IlluminateCacheAdapter($app['cache']);
-        }
+        'storage' => Tymon\JWTAuth\Providers\Storage\Illuminate::class
 
     ]
 
