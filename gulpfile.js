@@ -60,7 +60,7 @@ gulp.task('watch', function () {
  *
  */
 gulp.task('css', function () {
-    gulp.src('resources/assets/sass/main.scss')
+    gulp.src(config.resources.css)
         .pipe(sass())
         .pipe(autoprefixer('last 5 versions'))
         //.pipe(minifyCSS())
@@ -76,7 +76,7 @@ gulp.task('css', function () {
  *
  */
 gulp.task('js', function () {
-    gulp.src('resources/assets/js/**/*.js')
+    gulp.src(config.resources.js)
         .pipe(concat('main.js'))
         //.pipe(uglify())
         .pipe(gulp.dest(config.assetsPath))
