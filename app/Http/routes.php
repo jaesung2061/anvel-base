@@ -31,7 +31,6 @@ Route::group(['prefix' => 'api'], function () {
 | "api/" this route will return the main view.
 |
 */
-Route::any('{slug}', function ()
-{
+Route::any('{slug}', function () {
     return View::make('default');
 })->where('slug', '(.*)?');

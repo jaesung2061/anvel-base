@@ -1,5 +1,5 @@
-(function (module, undefined) {
-    module
+(function (app, undefined) {
+    app
         .config(['$stateProvider', '$locationProvider', 'RestangularProvider',
             function ($stateProvider, $locationProvider, RestangularProvider) {
                 // Because we want pretty urls, not hash bangs
