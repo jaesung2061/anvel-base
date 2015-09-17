@@ -1,4 +1,4 @@
-(function (app, undefined) {
+(function (app) {
     app
         .config(['$stateProvider', '$locationProvider', 'RestangularProvider',
             function ($stateProvider, $locationProvider, RestangularProvider) {
@@ -16,9 +16,9 @@
                     });
             }])
         .controller('AppController', [
-            'Restangular',
-            function (Restangular) {
-                var vm = this;
+            '$scope',
+            function ($scope) {
+                // Controller code here
             }])
 })(angular.module('App', [
     /*

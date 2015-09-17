@@ -3,53 +3,46 @@
         .controller('AuthController', [
             '$rootScope',
             '$scope',
-            '$state',
             'Session',
             'Restangular',
             function ($rootScope,
                       $scope,
-                      $state,
                       Session,
                       Restangular) {
-                var vm = this,
-                    Auth = Restangular.all('auth'),
-                    token,
-                    AppCtrl = $scope.$parent.$parent.AppCtrl;
+                var Auth = Restangular.all('auth');
+                $scope.credentials = {};
 
-                vm.postData = {};
-                vm.postData.rememberme = true;
-
-                vm.login = function () {
-                    Auth.customPOST(vm.postData).then(function (data) {
+                $scope.login = function () {
+                    Auth.customPOST($scope.credentials).then(function (data) {
                         $rootScope.$broadcast('login-success', data);
-
-                        if ($rootScope.intendedState) {
-                            $state.go($rootScope.intendedState, $rootScope.intendedStateParams);
-                        } else {
-                            $state.go('chat')
-                        }
+                        $scope.credentials = {};
                     }, function () {
                         $rootScope.$broadcast('login-failed');
+                        $scope.credentials = {};
                     });
                 };
-                vm.logout = function () {
+                $scope.logout = function () {
                     Auth.customDELETE().then(function () {
-                        $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+                        $rootScope.$broadcast('login-failed');
                     });
                 }
             }])
         .factory('Session', [function () {
-            var Session = this;
-            Session.token = null;
+            var Session = {
+                token: null,
+                user: null
+            };
 
-            Session.setToken = function (token) {
+            Session.setToken = function (token, user) {
                 Session.token = token;
+                Session.user = user;
             };
             Session.getToken = function () {
                 return Session.token;
             };
             Session.unsetToken = function () {
-                return Session.token = null;
+                Session.token = null;
+                Session.user = null;
             };
 
             return Session;
