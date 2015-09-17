@@ -50,7 +50,7 @@ class AuthController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function logout()
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
