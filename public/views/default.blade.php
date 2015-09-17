@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="App">
+<html ng-app="App" ng-controller="ApplicationController">
     <head>
         <title>Anvel Base</title>
         <base href="/">

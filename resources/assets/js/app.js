@@ -15,7 +15,7 @@
                         templateUrl: 'views/pages/home.html'
                     });
             }])
-        .controller('AppController', [
+        .controller('ApplicationController', [
             '$scope',
             function ($scope) {
                 // Controller code here
