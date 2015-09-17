@@ -15,7 +15,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/', 'Auth\AuthController@login');
         Route::get('/', 'Auth\AuthController@index');
-        Route::post('logout', 'Auth\AuthController@logout');
+        Route::delete('/', 'Auth\AuthController@logout');
     });
 
     Route::resource('users', 'UsersController');
