@@ -1,34 +1,18 @@
-(function (app) {
-    app
-        .config(['$stateProvider', '$locationProvider', 'RestangularProvider',
-            function ($stateProvider, $locationProvider, RestangularProvider) {
-                // Because we want pretty urls, not hash bangs
-                $locationProvider.html5Mode(true);
-
-                // Set default request base url
-                RestangularProvider.setBaseUrl('/api');
-
-                // Set your routes/states here
-                $stateProvider
-                    .state('home', {
-                        url: '/',
-                        templateUrl: 'views/pages/home.html'
-                    });
-            }])
+(function (appModule) {
+    /*
+     * Here is your root controller. When you need to work
+     * with application-wide tasks, this is the spot to
+     * do it!
+     */
+    appModule
         .controller('ApplicationController', [
             '$scope',
             function ($scope) {
-                // Controller code here
+                $scope.currentUser = null;
             }])
 })(angular.module('App', [
     /*
-     |--------------------------------------------------------------------------
-     | AngularJs Dependencies
-     |--------------------------------------------------------------------------
-     |
-     | Here is where you include all the AngularJs dependencies required
-     | for your application. Included are the bottom line essentials.
-     |
+     * AngularJs dependencies
      */
     'ngSanitize',
     'restangular',
@@ -36,13 +20,10 @@
     'ui.bootstrap',
 
     /*
-     |--------------------------------------------------------------------------
-     | Application Modules
-     |--------------------------------------------------------------------------
-     |
-     | Here you may include your application specific modules here.
-     |
+     * Your app modules
      */
-    'App.authModule'
+    'App.configModule',
+    'App.authModule',
+    'App.runModule'
 
 ]));

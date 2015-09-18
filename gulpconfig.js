@@ -29,7 +29,8 @@ config.assetsPath = 'public/assets';
  *
  */
 config.resources.js = [
-    // By default: All JS files in directory then sub-directories (alphabetically)
+    'resources/assets/js/initialize/config.js',
+    'resources/assets/js/initialize/run.js',
     'resources/assets/js/**/*.js'
 ];
 config.resources.css = [

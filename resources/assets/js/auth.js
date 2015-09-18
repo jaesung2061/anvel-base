@@ -27,24 +27,57 @@
                     });
                 }
             }])
-        .factory('Session', [function () {
-            var Session = {
-                token: null,
-                user: null
-            };
+        .factory('Session', [
+            function () {
+                var Session = {
+                    token: null,
+                    user: null
+                };
 
-            Session.setToken = function (token, user) {
-                Session.token = token;
-                Session.user = user;
-            };
-            Session.getToken = function () {
-                return Session.token;
-            };
-            Session.unsetToken = function () {
-                Session.token = null;
-                Session.user = null;
-            };
+                Session.create = function (token, user) {
+                    Session.token = token;
+                    Session.user = user;
+                };
+                Session.getToken = function () {
+                    return Session.token;
+                };
+                Session.getUser = function () {
+                    return Session.user;
+                };
+                Session.destroy = function () {
+                    Session.token = null;
+                    Session.user = null;
+                };
 
-            return Session;
-        }])
+                return Session;
+            }])
+        .factory('AuthResolver', [
+            '$q', '$rootScope', '$state',
+            function ($q, $rootScope, $state) {
+                return {
+                    resolve: function () {
+                        var deferred = $q.defer();
+                        var unwatch = $rootScope.$watch('currentUser', function (currentUser) {
+                            if (angular.isDefined(currentUser)) {
+                                if (currentUser) {
+                                    deferred.resolve(currentUser);
+                                } else {
+                                    deferred.reject();
+                                    $state.go('login');
+                                }
+                                unwatch();
+                            }
+                        });
+                        return deferred.promise;
+                    }
+                };
+            }])
+        .constant('AUTH_EVENTS', {
+            loginSuccess: 'auth-login-success',
+            loginFailed: 'auth-login-failed',
+            logoutSuccess: 'auth-logout-success',
+            sessionTimeout: 'auth-session-timeout',
+            notAuthenticated: 'auth-not-authenticated',
+            notAuthorized: 'auth-not-authorized'
+        })
 })(angular.module('App.authModule', []));
