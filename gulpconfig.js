@@ -29,6 +29,7 @@ config.assetsPath = 'public/assets';
  *
  */
 config.resources.js = [
+    'angular/initialize/initialize.js',
     'angular/initialize/config.js',
     'angular/initialize/run.js',
     'angular/**/*.js'

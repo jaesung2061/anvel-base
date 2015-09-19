@@ -8,7 +8,8 @@
         .controller('ApplicationController', [
             '$rootScope',
             'Restangular',
-            function ($rootScope, Restangular) {
+            function ($rootScope,
+                      Restangular) {
                 $rootScope.currentUser = null;
                 $rootScope.inspiringQuote = null;
 
@@ -16,20 +17,4 @@
                     $rootScope.inspiringQuote = quote;
                 })
             }])
-})(angular.module('App', [
-    /*
-     * AngularJs dependencies
-     */
-    'ngSanitize',
-    'restangular',
-    'ui.router',
-    'ui.bootstrap',
-
-    /*
-     * Your app modules
-     */
-    'App.configModule',
-    'App.authModule',
-    'App.runModule'
-
-]));
+})(angular.module('App'));
