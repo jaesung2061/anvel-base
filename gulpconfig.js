@@ -29,12 +29,12 @@ config.assetsPath = 'public/assets';
  *
  */
 config.resources.js = [
-    'resources/assets/js/initialize/config.js',
-    'resources/assets/js/initialize/run.js',
-    'resources/assets/js/**/*.js'
+    'angular/initialize/config.js',
+    'angular/initialize/run.js',
+    'angular/**/*.js'
 ];
 config.resources.css = [
-    'resources/assets/sass/main.scss'
+    'style/main.scss'
 ];
 
 /**
@@ -51,10 +51,10 @@ config.dependencies.js = [
     'bower_components/angular-sanitize/angular-sanitize.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
     'bower_components/restangular/dist/restangular.js',
-    'resources/assets/vendor/js/anvel-helpers.js'
+    'resources/vendor/js/anvel-helpers.js'
 ];
 config.dependencies.css = [
-    'resources/assets/vendor/css/**/*.css'
+    'resources/vendor/css/**/*.css'
 ];
 
 /**
@@ -65,8 +65,8 @@ config.dependencies.css = [
  * For command: "gulp watch"
  */
 config.watch.files = [
-    'resources/assets/js/**/*.js',
-    'resources/assets/sass/**/*.scss'
+    'angular/**/*.js',
+    'style/**/*.scss'
 ];
 config.watch.tasks = [
     'css',
