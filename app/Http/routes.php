@@ -18,7 +18,9 @@ Route::group(['prefix' => 'api'], function () {
         Route::delete('/', 'Auth\AuthController@logout');
     });
 
-    Route::resource('users', 'UsersController');
+    Route::get('inspire', function () {
+        return Inspiring::quote();
+    });
 });
 
 /*

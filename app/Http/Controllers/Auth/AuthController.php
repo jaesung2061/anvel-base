@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -54,6 +53,6 @@ class AuthController extends Controller {
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
-        return Response::make('Good', 200);
+        return 'Good';
     }
 }

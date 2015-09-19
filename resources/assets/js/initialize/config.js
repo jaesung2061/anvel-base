@@ -14,8 +14,7 @@
             $stateProvider
                 .state('home', {
                     url: '/',
-                    templateUrl: 'views/pages/home.html',
-                    protected: true
+                    templateUrl: 'views/pages/home.html'
                 });
         }])
 })(angular.module('App.configModule', []));

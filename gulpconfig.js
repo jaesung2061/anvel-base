@@ -51,7 +51,7 @@ config.dependencies.js = [
     'bower_components/angular-sanitize/angular-sanitize.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
     'bower_components/restangular/dist/restangular.js',
-    'resources/assets/js/helpers.js'
+    'resources/assets/vendor/js/anvel-helpers.js'
 ];
 config.dependencies.css = [
     'resources/assets/vendor/css/**/*.css'

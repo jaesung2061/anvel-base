@@ -6,9 +6,15 @@
      */
     appModule
         .controller('ApplicationController', [
-            '$scope',
-            function ($scope) {
-                $scope.currentUser = null;
+            '$rootScope',
+            'Restangular',
+            function ($rootScope, Restangular) {
+                $rootScope.currentUser = null;
+                $rootScope.inspiringQuote = null;
+
+                Restangular.one('inspire').get().then(function (quote) {
+                    $rootScope.inspiringQuote = quote;
+                })
             }])
 })(angular.module('App', [
     /*

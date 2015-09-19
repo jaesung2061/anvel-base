@@ -3,10 +3,12 @@
         .controller('AuthController', [
             '$rootScope',
             '$scope',
+            'AUTH_EVENTS',
             'Session',
             'Restangular',
             function ($rootScope,
                       $scope,
+                      AUTH_EVENTS,
                       Session,
                       Restangular) {
                 var Auth = Restangular.all('auth');
@@ -14,16 +16,16 @@
 
                 $scope.login = function () {
                     Auth.customPOST($scope.credentials).then(function (data) {
-                        $rootScope.$broadcast('login-success', data);
+                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, data);
                         $scope.credentials = {};
                     }, function () {
-                        $rootScope.$broadcast('login-failed');
+                        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                         $scope.credentials = {};
                     });
                 };
                 $scope.logout = function () {
                     Auth.customDELETE().then(function () {
-                        $rootScope.$broadcast('login-failed');
+                        $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                     });
                 }
             }])
@@ -50,27 +52,6 @@
                 };
 
                 return Session;
-            }])
-        .factory('AuthResolver', [
-            '$q', '$rootScope', '$state',
-            function ($q, $rootScope, $state) {
-                return {
-                    resolve: function () {
-                        var deferred = $q.defer();
-                        var unwatch = $rootScope.$watch('currentUser', function (currentUser) {
-                            if (angular.isDefined(currentUser)) {
-                                if (currentUser) {
-                                    deferred.resolve(currentUser);
-                                } else {
-                                    deferred.reject();
-                                    $state.go('login');
-                                }
-                                unwatch();
-                            }
-                        });
-                        return deferred.promise;
-                    }
-                };
             }])
         .constant('AUTH_EVENTS', {
             loginSuccess: 'auth-login-success',
