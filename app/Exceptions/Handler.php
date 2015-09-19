@@ -50,6 +50,8 @@ class Handler extends ExceptionHandler
             return response()->json(['token_expired'], $e->getStatusCode());
         } else if ($e instanceof TokenInvalidException) {
             return response()->json(['token_invalid'], $e->getStatusCode());
+        } else if ($e->getMessage() === 'The token could not be parsed from the request') {
+            return response()->json(['token_invalid'], 400);
         }
 
         return parent::render($request, $e);
