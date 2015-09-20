@@ -8,13 +8,19 @@
         .controller('ApplicationController', [
             '$rootScope',
             'Restangular',
+            'Session',
             function ($rootScope,
-                      Restangular) {
+                      Restangular,
+                      Session) {
                 $rootScope.currentUser = null;
                 $rootScope.inspiringQuote = null;
 
                 Restangular.one('inspire').get().then(function (quote) {
                     $rootScope.inspiringQuote = quote;
-                })
+                });
+
+                $rootScope.isAuthenticated = function () {
+                    return Session.isAuthenticated();
+                };
             }])
 })(angular.module('App'));

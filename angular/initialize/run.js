@@ -49,7 +49,7 @@
                         if (!Session.isAuthenticated()) {
                             // User is not authenticated
                             // Don't allow state change
-                            alert('Route is protected. To change this message, go to guardState() in "angular/initialize/run.js"');
+                            alert('Route is protected. To change this message or remove it, go to guardState() in "angular/initialize/run.js"');
                             event.preventDefault();
                         }
                     }
