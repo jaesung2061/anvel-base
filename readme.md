@@ -1,6 +1,6 @@
 # Installation
 
----
+Designed to make your life easy.
 
 ### Prerequisites
 
