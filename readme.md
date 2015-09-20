@@ -1,6 +1,6 @@
 # Installation
 
-Designed to make your life easy.
+Designed to make your life easy. Check out the [official docs](http://anvel.io).
 
 ### Prerequisites
 
