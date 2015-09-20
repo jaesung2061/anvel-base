@@ -6,16 +6,19 @@
         function ($rootScope, $state, Restangular, AUTH_EVENTS, Session) {
             var token = anvel.readCookie('token');
 
-            Restangular.one('auth').customGET(null, {token: token}).then(function (data) {
-                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, data);
-            }, function () {
-                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-            });
-
             $rootScope.$on('$stateChangeStart', guardState);
+            $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
             $rootScope.$on(AUTH_EVENTS.loginSuccess, authorizationTasks);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, deAuthorizedTasks);
             $rootScope.$on(AUTH_EVENTS.loginFailed, deAuthorizedTasks);
+
+            function onStateChangeSuccess() {
+                Restangular.one('auth').customGET(null, {token: token}).then(function (data) {
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, data);
+                }, function () {
+                    $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                });
+            }
 
             function authorizationTasks(event, data) {
                 Session.create(data.token, data.user);
@@ -26,7 +29,7 @@
                 });
             }
 
-            function deAuthorizedTasks(event, data) {
+            function deAuthorizedTasks() {
                 Session.authRequestSent = true;
                 Session.destroy();
                 $rootScope.currentUser = null;
