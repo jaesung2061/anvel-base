@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="assets/vendor.css">
         <link rel="stylesheet" href="assets/main.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>
         <script src="assets/vendor.js"></script>
         <script src="assets/main.js"></script>
     </head>
