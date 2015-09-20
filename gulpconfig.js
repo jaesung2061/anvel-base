@@ -32,6 +32,7 @@ config.resources.js = [
     'angular/initialize/initialize.js',
     'angular/initialize/config.js',
     'angular/initialize/run.js',
+    'angular/app.js',
     'angular/**/*.js'
 ];
 config.resources.css = [

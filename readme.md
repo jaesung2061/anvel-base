@@ -1,27 +1,19 @@
-## Angular Laravel starter kit (Anvel)
+# Installation
 
-Designed to make starting new projects even easier.
+---
 
 ### Prerequisites
 
-1. <a href="//getcomposer.org">Composer</a>
-2. <a href="//nodejs.org">NodeJs</a>
-3. <a href="//www.npmjs.com/package/bower">Bower</a>
-4. <a href="//www.npmjs.com/package/bower">Gulp</a>
+1. [Composer](//getcomposer.org)
+2. [NodeJs](//nodejs.org)
 
 ### Installation through Composer (recommended)
 
-Run this command:
+Run these commands at the terminal:
 
 ```
 composer create-project anvel/anvel-base your-project
-```
-
-<hr>
-
-### Post install
-
-```
+npm install -g bower gulp
 cd your-project
 npm install --no-bin-links
 bower install
@@ -29,18 +21,13 @@ gulp setup
 php artisan serve
 ```
 
-Installation is now done. Go to http://localhost:8000.
+Go to http://localhost:8000. Before working on your AngularJs/SCSS
+files, you must run command `gulp`.
 
-Before working on your JS/SCSS files, you must run command `gulp`. This command will watch the JS/CSS files in `./resources/assets/*`. When it detects change in the files, it will grab the files, compile and concatenate them into `public/assets`. If you are running `php artisan serve` already, open a new terminal to run `gulp`.
+<wi><a ui-sref="eli5.show({title: 'gulp'})">Gulp</a></wi>
 
-<hr>
+## Your working directories
 
-### Your working directories
-
-Your AngularJs files will be located in `./resources/assets/js`
-
-Your scss files are located in `./resources/assets/sass`
-
-Your views are located in `./public/views`
-
-### [Tutorials and Documentation at Anvel.io](http://anvel.io)
+- Your AngularJs files are located in `/angular`
+- Your scss files are located in `/style`
+- Your views are located in `/public/views`
