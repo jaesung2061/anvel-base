@@ -24,8 +24,6 @@ php artisan serve
 Go to http://localhost:8000. Before working on your AngularJs/SCSS
 files, you must run command `gulp`.
 
-<wi><a ui-sref="eli5.show({title: 'gulp'})">Gulp</a></wi>
-
 ## Your working directories
 
 - Your AngularJs files are located in `/angular`
