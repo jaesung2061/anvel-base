@@ -6,19 +6,18 @@
         function ($rootScope, $state, Restangular, AUTH_EVENTS, Session) {
             var token = anvel.readCookie('token');
 
-            $rootScope.$on('$stateChangeStart', guardState);
-            $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
-            $rootScope.$on(AUTH_EVENTS.loginSuccess, authorizationTasks);
-            $rootScope.$on(AUTH_EVENTS.logoutSuccess, deAuthorizedTasks);
-            $rootScope.$on(AUTH_EVENTS.loginFailed, deAuthorizedTasks);
-
-            function onStateChangeSuccess() {
+            var deRegister = $rootScope.$on('$stateChangeSuccess', function () {
                 Restangular.one('auth').customGET(null, {token: token}).then(function (data) {
                     $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, data);
                 }, function () {
                     $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                 });
-            }
+                deRegister();
+            });
+            $rootScope.$on('$stateChangeStart', guardState);
+            $rootScope.$on(AUTH_EVENTS.loginSuccess, authorizationTasks);
+            $rootScope.$on(AUTH_EVENTS.logoutSuccess, deAuthorizedTasks);
+            $rootScope.$on(AUTH_EVENTS.loginFailed, deAuthorizedTasks);
 
             function authorizationTasks(event, data) {
                 Session.create(data.token, data.user);
@@ -50,7 +49,7 @@
                         if (!Session.isAuthenticated()) {
                             // User is not authenticated
                             // Don't allow state change
-                            alert('not authorized');
+                            alert('Route is protected. To change this message, go to guardState() in "angular/initialize/run.js"');
                             event.preventDefault();
                         }
                     }
