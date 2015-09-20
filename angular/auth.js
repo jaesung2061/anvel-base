@@ -50,6 +50,9 @@
                     Session.token = null;
                     Session.user = null;
                 };
+                Session.isAuthenticated = function () {
+                    return !!Session.token;
+                };
 
                 return Session;
             }])
