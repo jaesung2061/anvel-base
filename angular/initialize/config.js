@@ -12,9 +12,9 @@
 
             // Set your routes/states here
             $stateProvider
-                .state('home', {
+                .state('welcome', {
                     url: '/',
-                    templateUrl: 'views/pages/home.html'
+                    templateUrl: 'views/pages/welcome.html'
                 })
                 .state('users', {
                     url: '/users',
