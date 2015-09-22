@@ -6,7 +6,7 @@
             var Users = Restangular.all('users');
             $scope.newUser = {};
 
-            // Get all users. GET /api/users
+            // Makes a GET request to /api/users
             Users.getList().then(function (users) {
                 $scope.users = users;
             });
