@@ -105,4 +105,34 @@ gulp.task('vendor', function () {
         .pipe(gulp.dest(config.assetsPath))
 });
 
+/**
+ * Command: 'gulp deployment-tasks'
+ *
+ * To be used on deployment server. Same as running
+ * 'gulp setup' except all files are minified/uglified
+ *
+ */
+gulp.task('deployment-tasks', function () {
+    gulp.src(config.dependencies.js)
+        .pipe(concat('vendor.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(config.assetsPath));
+
+    gulp.src(config.dependencies.css)
+        .pipe(concat('vendor.css'))
+        .pipe(minifyCSS({keepSpecialComments: 0}))
+        .pipe(gulp.dest(config.assetsPath));
+
+    gulp.src(config.resources.js)
+        .pipe(concat('main.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(config.assetsPath));
+
+    gulp.src(config.resources.css)
+        .pipe(sass())
+        .pipe(autoprefixer('last 5 versions'))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest(config.assetsPath));
+});
+
 // Feel free to make custom Gulp methods!
