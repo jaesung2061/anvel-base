@@ -4,9 +4,5 @@ html, body {
     height: 100%;
 }
 
-body {
-    font-weight: 100;
-    font-family: 'Lato';
-}
-
-@import 'pages/home';
+@import 'pages/welcome';
+@import 'pages/users';

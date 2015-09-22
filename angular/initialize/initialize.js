@@ -13,7 +13,8 @@
          */
         'App.configModule',
         'App.authModule',
-        'App.runModule'
+        'App.runModule',
+        'App.usersModule'
 
     ]);
 })();

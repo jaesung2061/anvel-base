@@ -1,0 +1,27 @@
+<div class="container page-users">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <h1 class="text-center">Users</h1>
+
+            <form ng-submit="createUser(newUser)">
+                <input type="text" class="form-control" ng-model="newUser.name" placeholder="Name">
+
+                <input type="email" class="form-control" ng-model="newUser.email" placeholder="Email">
+
+                <button type="submit" class="btn btn-success center-block">Create User</button>
+            </form>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in users">
+
+                    <p><strong>Name:</strong> {{user.name}}</p>
+
+                    <p><strong>Email:</strong> {{user.email}}</p>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

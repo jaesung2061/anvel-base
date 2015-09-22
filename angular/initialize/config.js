@@ -15,6 +15,11 @@
                 .state('home', {
                     url: '/',
                     templateUrl: 'views/pages/home.html'
+                })
+                .state('users', {
+                    url: '/users',
+                    templateUrl: 'views/pages/users.html',
+                    controller: 'UsersController'
                 });
         }])
 })(angular.module('App.configModule', []));
