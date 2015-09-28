@@ -7,11 +7,15 @@
             var token = anvel.readCookie('token');
 
             var deRegister = $rootScope.$on('$stateChangeSuccess', function () {
-                Restangular.one('auth').customGET(null, {token: token}).then(function (data) {
-                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, data);
-                }, function () {
+                if (token) {
+                    Restangular.one('auth').customGET(null, {token: token}).then(function (data) {
+                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, data);
+                    }, function () {
+                        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                    });
+                } else {
                     $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                });
+                }
                 deRegister();
             });
             $rootScope.$on('$stateChangeStart', guardState);
