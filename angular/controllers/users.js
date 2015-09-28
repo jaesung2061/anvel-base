@@ -5,6 +5,7 @@
         function (Restangular, $scope) {
             var Users = Restangular.all('users');
             $scope.newUser = {};
+            $scope.errorPostingUser = null;
 
             // Makes a GET request to /api/users
             Users.getList().then(function (users) {
@@ -15,9 +16,10 @@
                 Users.post(newUser).then(function (createdUser) {
                     // Success
                     $scope.users.unshift(createdUser);
+                    $scope.errorPostingUser = false;
                 }, function (error) {
                     // Error
-                    console.log(error);
+                    $scope.errorPostingUser = true;
                 });
             };
         }])

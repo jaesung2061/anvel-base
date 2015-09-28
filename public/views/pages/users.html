@@ -4,6 +4,10 @@
 
             <h1 class="text-center">Users</h1>
 
+            <div class="alert alert-danger" role="alert" ng-show="errorPostingUser">
+                <p>There was an error! Have you set up your database yet?</p>
+            </div>
+
             <form ng-submit="createUser(newUser)">
                 <input type="text" class="form-control" ng-model="newUser.name" placeholder="Name">
 
