@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "anvel/anvel-base",
     "description": "AngularJs and Laravel, integrated",
     "keywords": ["framework", "laravel", "angular", "angularjs"],
     "license": "MIT",
