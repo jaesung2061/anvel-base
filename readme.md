@@ -1,3 +1,8 @@
+# Repository is no longer supported
+
+If you would like to try out my new Angular 2/Lumen starter git, feel free to
+check it out at [here](https://github.com/jaesung2061/anvel).
+
 # Installation
 
 Designed to make your life easy. Check out the [official docs](http://anvel.io).
